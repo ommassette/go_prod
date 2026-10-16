@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contact — gofaiba{% endblock %}
+
+{% block content %}
+
+<!-- CONTACT -->
+<section class="contact" id="contact-form">
+  <div class="contact__inner">
+
+    <div class="contact__head">
+      <h1 class="contact__title">
+        Get in <strong>touch</strong>
+      </h1>
+      <p class="contact__intro">
+        Tell us a bit about what you need and we'll get back to you within one
+        working day — usually much sooner. All enquiries are handled in confidence.
+      </p>
+    </div>
+
+    <div class="contact__grid">
+
+      <!-- ==================== FORM ==================== -->
+      <form class="contact__form" id="contactForm"
+            method="post" action="{% url 'app:contact' %}#contact-form" novalidate>
+        {% csrf_token %}
+
+        <div class="c-row">
+          <div class="c-field{% if form.name.errors %} has-error{% endif %}">
+            <label for="{{ form.name.id_for_label }}">Name</label>
+            {{ form.name }}
+            {% for error in form.name.errors %}
+              <span class="c-error">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <div class="c-field{% if form.email.errors %} has-error{% endif %}">
+            <label for="{{ form.email.id_for_label }}">Email</label>
+            {{ form.email }}
+            {% for error in form.email.errors %}
+              <span class="c-error">{{ error }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="c-row">
+          <div class="c-field{% if form.phone.errors %} has-error{% endif %}">
+            <label for="{{ form.phone.id_for_label }}">
+              Phone
+              <span style="color: rgba(26,26,28,.4); text-transform: none; letter-spacing: 0;">(optional)</span>
+            </label>
+            {{ form.phone }}
+            {% for error in form.phone.errors %}
+              <span class="c-error">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <div class="c-field{% if form.subject.errors %} has-error{% endif %}">
+            <label for="{{ form.subject.id_for_label }}">I'm interested in</label>
+            {{ form.subject }}
+            {% for error in form.subject.errors %}
+              <span class="c-error">{{ error }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="c-field{% if form.message.errors %} has-error{% endif %}">
+          <label for="{{ form.message.id_for_label }}">Message</label>
+          {{ form.message }}
+          {% for error in form.message.errors %}
+            <span class="c-error">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+        <button type="submit" class="contact__submit">
+          Send Message
+          <i class="bi bi-arrow-right" aria-hidden="true"></i>
+        </button>
+
+      </form>
+
+      <!-- ==================== INFO ==================== -->
+      <aside class="contact__info">
+
+        <div class="contact__info-block">
+          <p class="contact__info-label">Office</p>
+          <p class="contact__info-value">
+            <span>{{ site_settings.address_line_1 }}</span>
+            <span>{{ site_settings.address_line_2 }}</span>
+          </p>
+        </div>
+
+        <div class="contact__info-block">
+          <p class="contact__info-label">Phone</p>
+          <a href="tel:{{ site_settings.contact_phone_raw }}" class="contact__info-value">
+            {{ site_settings.contact_phone }}
+          </a>
+        </div>
+
+        <div class="contact__info-block">
+          <p class="contact__info-label">Email</p>
+          <a href="mailto:{{ site_settings.contact_email }}" class="contact__info-value">
+            {{ site_settings.contact_email }}
+          </a>
+        </div>
+
+        <div class="contact__info-block">
+          <p class="contact__info-label">Hours</p>
+          <p class="contact__info-value">
+            <span>{{ site_settings.hours_weekday }}</span>
+            <span>{{ site_settings.hours_saturday }}</span>
+            <span>{{ site_settings.hours_sunday }}</span>
+          </p>
+        </div>
+
+      </aside>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- MAP -->
+<section class="map" aria-label="Our location on the map">
+  <iframe
+    title="gofaiba office location"
+    src="https://www.google.com/maps?q=Nairobi,Kenya&output=embed"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allowfullscreen>
+  </iframe>
+</section>
+
+
+<!-- CTA BAND -->
+<section class="ctaband">
+  <div class="ctaband__inner">
+
+    <p class="ctaband__text">
+      Ready to get connected? We'll get you online in days, not weeks.
+    </p>
+
+    <a href="{% url 'app:pricing' %}" class="ctaband__btn">
+      View Plans
+      <i class="bi bi-arrow-right" aria-hidden="true"></i>
+    </a>
+
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,220 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}gofaiba — Internet Without Compromise{% endblock %}</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+<link rel="preload" as="style"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap">
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap">
+
+<link rel="preload" as="style"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% block extra_head %}{% endblock %}
+</head>
+
+<body>
+
+<header class="hd">
+  <div class="hd__inner">
+
+    <a href="{% url 'app:index' %}" class="hd__brand" aria-label="gofaiba home">
+      {% if site_settings.logo %}
+        <img class="hd__brand-img"
+             src="{{ site_settings.logo.url }}"
+             alt="{{ site_settings.logo_alt }}">
+      {% else %}
+        <span class="hd__brand-dot" aria-hidden="true"></span>
+        <span class="hd__brand-name">go<span>faiba</span></span>
+      {% endif %}
+    </a>
+
+    <nav class="hd__nav" aria-label="Main">
+      <a href="{% url 'app:index' %}">Home</a>
+      <a href="{% url 'app:about' %}">About Us</a>
+      <a href="{% url 'app:services' %}">Services</a>
+      <a href="{% url 'app:pricing' %}">Pricing</a>
+      <a href="{% url 'app:faq' %}">FAQ</a>
+      <a href="{% url 'app:contact' %}">Contact</a>
+    </nav>
+
+    <a href="{% url 'app:contact' %}" class="hd__cta">
+      Get Connected <i class="bi bi-arrow-right" aria-hidden="true"></i>
+    </a>
+
+    <button class="hd__burger" id="burger" type="button"
+            aria-expanded="false" aria-controls="drawer" aria-label="Toggle navigation">
+      <i class="bi bi-list" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div class="hd__drawer" id="drawer">
+    <ul>
+      <li><a href="{% url 'app:index' %}">Home</a></li>
+      <li><a href="{% url 'app:about' %}">About Us</a></li>
+      <li><a href="{% url 'app:services' %}">Services</a></li>
+      <li><a href="{% url 'app:pricing' %}">Pricing</a></li>
+      <li><a href="{% url 'app:faq' %}">FAQ</a></li>
+      <li><a href="{% url 'app:contact' %}">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+{% if messages %}
+  <div class="messages" role="status">
+    {% for message in messages %}
+      <p class="message">{{ message }}</p>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% block content %}{% endblock %}
+
+<footer class="ft">
+  <div class="ft__inner">
+    <div class="ft__grid">
+
+      <div>
+        <a href="{% url 'app:index' %}" class="ft__brand" aria-label="gofaiba home">
+          {% if site_settings.logo %}
+            <img class="ft__brand-img"
+                 src="{{ site_settings.logo.url }}"
+                 alt="{{ site_settings.logo_alt }}">
+          {% else %}
+            <span class="ft__brand-dot" aria-hidden="true"></span>
+            <span class="ft__brand-name">go<span>faiba</span></span>
+          {% endif %}
+        </a>
+
+        <p class="ft__tagline">{{ site_settings.tagline }}</p>
+
+        <div class="ft__socials">
+          {% if site_settings.instagram_url %}
+            <a href="{{ site_settings.instagram_url }}" aria-label="Instagram" target="_blank" rel="noopener">
+              <i class="bi bi-instagram" aria-hidden="true"></i>
+            </a>
+          {% endif %}
+
+          {% if site_settings.facebook_url %}
+            <a href="{{ site_settings.facebook_url }}" aria-label="Facebook" target="_blank" rel="noopener">
+              <i class="bi bi-facebook" aria-hidden="true"></i>
+            </a>
+          {% endif %}
+
+          {% if site_settings.tiktok_url %}
+            <a href="{{ site_settings.tiktok_url }}" aria-label="TikTok" target="_blank" rel="noopener">
+              <i class="bi bi-tiktok" aria-hidden="true"></i>
+            </a>
+          {% endif %}
+
+          {% if site_settings.whatsapp_url %}
+            <a href="{{ site_settings.whatsapp_url }}" aria-label="WhatsApp" target="_blank" rel="noopener">
+              <i class="bi bi-whatsapp" aria-hidden="true"></i>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div>
+        <h3 class="ft__h">Explore</h3>
+        <ul class="ft__links">
+          <li><a href="{% url 'app:index' %}">Home</a></li>
+          <li><a href="{% url 'app:about' %}">About Us</a></li>
+          <li><a href="{% url 'app:services' %}">Services</a></li>
+          <li><a href="{% url 'app:pricing' %}">Pricing</a></li>
+          <li><a href="{% url 'app:faq' %}">FAQ</a></li>
+          <li><a href="{% url 'app:contact' %}">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="ft__h">Information</h3>
+        <ul class="ft__links">
+          <li><a href="{% url 'app:privacy_policy' %}">Privacy Policy</a></li>
+                  <li><a href="{% url 'app:cookie_policy' %}">Cookie Policy</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="ft__h">Get In Touch</h3>
+        <ul class="ft__contact">
+
+          <li>
+            <p class="ft__contact-label">Email</p>
+            <a href="mailto:{{ site_settings.contact_email }}" class="ft__contact-value">
+              {{ site_settings.contact_email }}
+            </a>
+          </li>
+
+          <li>
+            <p class="ft__contact-label">Phone</p>
+            <a href="tel:{{ site_settings.contact_phone_raw }}" class="ft__contact-value">
+              {{ site_settings.contact_phone }}
+            </a>
+          </li>
+
+          <li>
+            <p class="ft__contact-label">Address</p>
+            <p class="ft__contact-value">
+              {{ site_settings.address_line_1 }}<br>
+              {{ site_settings.address_line_2 }}
+            </p>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="ft__bottom">
+      <p>&copy; <span id="ftYear"></span> gofaiba. All rights reserved.</p>
+      <p>{{ site_settings.footer_note }}</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  const burger = document.getElementById('burger');
+  const drawer = document.getElementById('drawer');
+
+  if (burger && drawer) {
+    burger.addEventListener('click', function () {
+      const open = !drawer.classList.contains('is-open');
+      drawer.classList.toggle('is-open', open);
+      burger.setAttribute('aria-expanded', String(open));
+      burger.innerHTML = open
+        ? '<i class="bi bi-x-lg" aria-hidden="true"></i>'
+        : '<i class="bi bi-list" aria-hidden="true"></i>';
+    });
+
+    drawer.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        drawer.classList.remove('is-open');
+        burger.setAttribute('aria-expanded', 'false');
+        burger.innerHTML = '<i class="bi bi-list" aria-hidden="true"></i>';
+      });
+    });
+  }
+
+  const ftYear = document.getElementById('ftYear');
+  if (ftYear) ftYear.textContent = new Date().getFullYear();
+})();
+</script>
+
+{% block scripts %}{% endblock %}
+</body>
+</html>

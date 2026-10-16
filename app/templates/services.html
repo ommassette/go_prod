@@ -1,0 +1,208 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Our Services — gofaiba{% endblock %}
+
+{% block content %}
+
+<!-- CORE SERVICES -->
+<section class="core">
+  <div class="core__inner">
+
+    <div class="core__head">
+      <h1 class="core__title">
+        Everything you need to <strong>get online</strong>
+      </h1>
+    </div>
+
+    <div class="core__grid core__grid--two">
+
+      <!-- HOME FIBRE -->
+      <div class="svc">
+        <div class="svc__icon">
+          <i class="bi bi-house-door-fill" aria-hidden="true"></i>
+        </div>
+
+        <h3 class="svc__title">
+          <strong>Home</strong> Fibre
+        </h3>
+
+        <p class="svc__copy">
+          Symmetrical fibre straight to your door — uncapped, unthrottled and
+          reliable enough that you'll forget it's there.
+        </p>
+
+        <ul class="svc__features">
+          <li><i class="bi bi-check2" aria-hidden="true"></i>Up to 500 Mbps symmetrical</li>
+          <li><i class="bi bi-check2" aria-hidden="true"></i>Unlimited data, no throttling</li>
+          <li><i class="bi bi-check2" aria-hidden="true"></i>Free professional install</li>
+        </ul>
+
+        <a href="{% url 'app:index' %}#pricing" class="svc__cta">
+          View Plans
+          <i class="bi bi-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <!-- BUSINESS INTERNET -->
+      <div class="svc">
+        <div class="svc__icon">
+          <i class="bi bi-buildings-fill" aria-hidden="true"></i>
+        </div>
+
+        <h3 class="svc__title">
+          <strong>Business</strong> Internet
+        </h3>
+
+        <p class="svc__copy">
+          Dedicated bandwidth, static IPs and SLA-backed uptime for teams that
+          can't afford to be offline.
+        </p>
+
+        <ul class="svc__features">
+          <li><i class="bi bi-check2" aria-hidden="true"></i>Dedicated, uncontended bandwidth</li>
+          <li><i class="bi bi-check2" aria-hidden="true"></i>99.9% uptime SLA</li>
+          <li><i class="bi bi-check2" aria-hidden="true"></i>Static IP block included</li>
+        </ul>
+
+        <a href="{% url 'app:index' %}#contact" class="svc__cta">
+          Request A Quote
+          <i class="bi bi-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- WHAT'S INCLUDED -->
+<section class="incl">
+  <div class="incl__inner">
+
+    <div class="incl__grid">
+
+      <div>
+        <h2 class="incl__title">
+          Every plan comes with <strong>the basics</strong>
+        </h2>
+
+        <p class="incl__copy">
+          We don't nickel-and-dime you for the essentials. Whatever plan you pick,
+          these come as standard — no asterisks, no hidden add-ons.
+        </p>
+
+        <div class="incl__actions">
+          <a href="{% url 'app:index' %}#pricing" class="incl__btn incl__btn--solid">
+            Compare Plans
+            <i class="bi bi-arrow-right" aria-hidden="true"></i>
+          </a>
+          <a href="{% url 'app:index' %}#contact" class="incl__btn incl__btn--ghost">
+            Ask A Question
+          </a>
+        </div>
+      </div>
+
+      <div class="incl__list">
+
+        <div class="incl__item">
+          <div class="incl__item-icon">
+            <i class="bi bi-tools" aria-hidden="true"></i>
+          </div>
+          <div>
+            <h3 class="incl__item-title">Professional install</h3>
+            <p class="incl__item-copy">
+              We run the cable, mount the hardware, and test everything before we leave.
+            </p>
+          </div>
+        </div>
+
+        <div class="incl__item">
+          <div class="incl__item-icon">
+            <i class="bi bi-headset" aria-hidden="true"></i>
+          </div>
+          <div>
+            <h3 class="incl__item-title">24/7 support</h3>
+            <p class="incl__item-copy">
+              Real humans on the line, every hour of every day — not a chatbot.
+            </p>
+          </div>
+        </div>
+
+        <div class="incl__item">
+          <div class="incl__item-icon">
+            <i class="bi bi-arrow-repeat" aria-hidden="true"></i>
+          </div>
+          <div>
+            <h3 class="incl__item-title">Free upgrades</h3>
+            <p class="incl__item-copy">
+              When we expand the network in your area, your speed goes up for free.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ADD-ONS (dynamic) -->
+<section class="addons">
+  <div class="addons__inner">
+
+    <div class="addons__head">
+      <h2 class="addons__title">
+        Extras when you need <strong>more</strong>
+      </h2>
+    </div>
+
+    <div class="addons__grid">
+
+      {% for addon in addons %}
+        <div class="addons__item">
+          <div class="addons__left">
+            <div class="addons__icon">
+              <i class="bi {{ addon.icon }}" aria-hidden="true"></i>
+            </div>
+            <div>
+              <h3 class="addons__name">{{ addon.name }}</h3>
+              <p class="addons__copy">{{ addon.description }}</p>
+            </div>
+          </div>
+          <div class="addons__price">
+            <span class="addons__price-value">{{ addon.price_value }}</span>
+            <span class="addons__price-unit">{{ addon.price_unit }}</span>
+          </div>
+        </div>
+      {% empty %}
+        <p class="addons__empty">No extras available right now.</p>
+      {% endfor %}
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CTA BAND -->
+<section class="ctaband">
+  <div class="ctaband__inner">
+
+    <p class="ctaband__text">
+      Not sure which service fits your home or business? Tell us what you need
+      and we'll point you in the right direction — no pressure.
+    </p>
+
+    <a href="{% url 'app:index' %}#contact" class="ctaband__btn">
+      Talk To Us
+      <i class="bi bi-arrow-right" aria-hidden="true"></i>
+    </a>
+
+  </div>
+</section>
+
+{% endblock %}

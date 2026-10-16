@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Page Not Found — gofaiba{% endblock %}
+
+{% block content %}
+
+<section class="nf">
+
+  <!-- decorative clouds -->
+  <div class="nf__clouds" aria-hidden="true">
+    <svg class="nf__cloud nf__cloud--a" viewBox="0 0 140 70" xmlns="http://www.w3.org/2000/svg">
+      <g fill="currentColor">
+        <circle cx="36"  cy="42" r="21"/>
+        <circle cx="68"  cy="30" r="28"/>
+        <circle cx="104" cy="43" r="19"/>
+        <rect x="36" y="38" width="68" height="25" rx="12.5"/>
+      </g>
+    </svg>
+    <svg class="nf__cloud nf__cloud--b" viewBox="0 0 140 70" xmlns="http://www.w3.org/2000/svg">
+      <g fill="currentColor">
+        <circle cx="36"  cy="42" r="21"/>
+        <circle cx="68"  cy="30" r="28"/>
+        <circle cx="104" cy="43" r="19"/>
+        <rect x="36" y="38" width="68" height="25" rx="12.5"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="nf__inner">
+
+    <div class="nf__code" aria-hidden="true">
+      <span>4</span><span class="nf__code-zero">0</span><span>4</span>
+    </div>
+
+    <h1 class="nf__title">
+      This page went <strong>offline</strong>
+    </h1>
+
+    <p class="nf__copy">
+      The link you followed doesn't exist, or the page has moved somewhere new.
+      Let's get you back on track.
+    </p>
+
+    <div class="nf__actions">
+      <a href="{% url 'app:index' %}" class="btn-primary">
+        Back Home
+        <i class="bi bi-arrow-right" aria-hidden="true"></i>
+      </a>
+      <a href="{% url 'app:contact' %}" class="btn-ghost">
+        Contact Support
+      </a>
+    </div>
+
+    <div class="nf__quick">
+
+      <a href="{% url 'app:pricing' %}" class="nf__link">
+        <span class="nf__link-left">
+          <i class="bi bi-tag-fill nf__link-icon" aria-hidden="true"></i>
+          <span class="nf__link-text">See our plans &amp; pricing</span>
+        </span>
+        <i class="bi bi-arrow-right nf__link-arrow" aria-hidden="true"></i>
+      </a>
+
+      <a href="{% url 'app:services' %}" class="nf__link">
+        <span class="nf__link-left">
+          <i class="bi bi-grid-fill nf__link-icon" aria-hidden="true"></i>
+          <span class="nf__link-text">Browse our services</span>
+        </span>
+        <i class="bi bi-arrow-right nf__link-arrow" aria-hidden="true"></i>
+      </a>
+
+      <a href="{% url 'app:faq' %}" class="nf__link">
+        <span class="nf__link-left">
+          <i class="bi bi-question-circle-fill nf__link-icon" aria-hidden="true"></i>
+          <span class="nf__link-text">Find answers in our FAQ</span>
+        </span>
+        <i class="bi bi-arrow-right nf__link-arrow" aria-hidden="true"></i>
+      </a>
+
+      <a href="{% url 'app:about' %}" class="nf__link">
+        <span class="nf__link-left">
+          <i class="bi bi-people-fill nf__link-icon" aria-hidden="true"></i>
+          <span class="nf__link-text">Learn about us</span>
+        </span>
+        <i class="bi bi-arrow-right nf__link-arrow" aria-hidden="true"></i>
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock %}

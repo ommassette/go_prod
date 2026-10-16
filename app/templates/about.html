@@ -1,0 +1,307 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}About Us — gofaiba{% endblock %}
+
+{% block content %}
+
+<!-- OUR STORY -->
+<section class="story">
+  <div class="story__inner">
+
+    <div class="story__grid">
+
+      <div>
+
+        <h2 class="story__title">
+          We started with a <strong>simple idea</strong>
+        </h2>
+
+        <p class="story__copy">
+          Internet should just work. No fine print, no throttling at 8pm, no
+          support queue that puts you on hold for forty minutes. We wanted the
+          boring kind of reliability — the kind you stop noticing.
+        </p>
+
+        <p class="story__copy">
+          So we laid our own fibre, hired people who actually understand the
+          network, and priced it like we'd want it priced if we were the customer.
+          That's still the whole business plan.
+        </p>
+
+        <div class="story__actions">
+          <a href="{% url 'app:index' %}#services" class="story__btn story__btn--solid">
+            What We Offer
+            <i class="bi bi-arrow-right" aria-hidden="true"></i>
+          </a>
+          <a href="{% url 'app:index' %}#contact" class="story__btn story__btn--ghost">
+            Talk To Us
+          </a>
+        </div>
+
+      </div>
+
+      <div class="story__media">
+        {% if site_settings.about_image %}
+          <img src="{{ site_settings.about_image.url }}"
+               alt="{{ site_settings.about_image_alt }}"
+               loading="lazy">
+        {% endif %}
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- MISSION · VISION · STRATEGY -->
+<section class="mvs">
+  <div class="mvs__inner">
+
+    <div class="mvs__grid">
+
+      <div class="mvs__card">
+        <div class="mvs__icon">
+          <i class="bi bi-bullseye" aria-hidden="true"></i>
+        </div>
+        <h3 class="mvs__title">
+          Our <strong>mission</strong>
+        </h3>
+        <p class="mvs__copy">
+          To deliver internet that feels invisible — always on, always fast,
+          always backed by real people who pick up the phone.
+        </p>
+      </div>
+
+      <div class="mvs__card mvs__card--accent">
+        <div class="mvs__icon">
+          <i class="bi bi-diagram-3-fill" aria-hidden="true"></i>
+        </div>
+        <h3 class="mvs__title">
+          Our <strong>strategy</strong>
+        </h3>
+        <p class="mvs__copy">
+          Own the infrastructure, hire locally, and grow neighbourhood by
+          neighbourhood. We'd rather be excellent in a few places than mediocre
+          everywhere.
+        </p>
+      </div>
+
+      <div class="mvs__card">
+        <div class="mvs__icon">
+          <i class="bi bi-binoculars-fill" aria-hidden="true"></i>
+        </div>
+        <h3 class="mvs__title">
+          Our <strong>vision</strong>
+        </h3>
+        <p class="mvs__copy">
+          A country where every home and business has access to connectivity
+          that doesn't hold them back. Fast internet shouldn't be a luxury.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- VALUES -->
+<section class="vals">
+  <div class="vals__inner">
+
+    <div class="vals__head">
+      <h2 class="vals__title">
+        What we <strong>stand for</strong>
+      </h2>
+    </div>
+
+    <div class="vals__grid">
+
+      <div class="vals__item">
+        <i class="vals__icon bi bi-shield-check" aria-hidden="true"></i>
+        <h3 class="vals__item-title">Reliability</h3>
+        <p class="vals__copy">
+          Uptime isn't a marketing number to us — it's the whole point.
+          If the network isn't up, nothing else matters.
+        </p>
+      </div>
+
+      <div class="vals__item">
+        <i class="vals__icon bi bi-lightning-charge-fill" aria-hidden="true"></i>
+        <h3 class="vals__item-title">Speed</h3>
+        <p class="vals__copy">
+          Symmetrical, uncapped, unthrottled. The speed you pay for is the
+          speed you get, every hour of the day.
+        </p>
+      </div>
+
+      <div class="vals__item">
+        <i class="vals__icon bi bi-eye-fill" aria-hidden="true"></i>
+        <h3 class="vals__item-title">Transparency</h3>
+        <p class="vals__copy">
+          No hidden fees, no surprise price hikes, no fine print you need a
+          lawyer to read. What we quote is what you pay.
+        </p>
+      </div>
+
+      <div class="vals__item">
+        <i class="vals__icon bi bi-people-fill" aria-hidden="true"></i>
+        <h3 class="vals__item-title">Community</h3>
+        <p class="vals__copy">
+          We hire locally, invest locally, and answer the phone with real
+          humans who live where you live.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- WHY US -->
+<section class="why">
+  <div class="why__inner">
+
+    <div class="why__head">
+      <h2 class="why__title">
+        Why people <strong>choose us</strong>
+      </h2>
+    </div>
+
+    <div class="why__grid">
+
+      <div>
+        <span class="why__num">01</span>
+        <h3 class="why__item-title">
+          <strong>Direct</strong> support
+        </h3>
+        <p class="why__copy">
+          No call centres, no ticket queues. When you ring us, you get an
+          engineer who actually knows your setup.
+        </p>
+      </div>
+
+      <div>
+        <span class="why__num">02</span>
+        <h3 class="why__item-title">
+          <strong>Fair</strong> pricing, always
+        </h3>
+        <p class="why__copy">
+          The price we quote is the price you pay. No hidden fees, no annual
+          hikes buried in the fine print.
+        </p>
+      </div>
+
+      <div>
+        <span class="why__num">03</span>
+        <h3 class="why__item-title">
+          <strong>Fast</strong> installation
+        </h3>
+        <p class="why__copy">
+          Most installs are booked within 48 hours of your call, and finished
+          in a single visit. Same week, usually.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- OUR COMMITMENT -->
+<section class="commit">
+  <div class="commit__inner">
+
+    <div class="commit__head">
+      <h2 class="commit__title">
+        What we <strong>commit to</strong>
+      </h2>
+    </div>
+
+    <div class="commit__grid">
+
+      <div class="commit__item">
+        <div class="commit__icon">
+          <i class="bi bi-clock-history" aria-hidden="true"></i>
+        </div>
+        <div>
+          <h3 class="commit__item-title">
+            We answer within <strong>60 seconds</strong>
+          </h3>
+          <p class="commit__copy">
+            No hold music, no runaround. Ring us and a person picks up.
+          </p>
+        </div>
+      </div>
+
+      <div class="commit__item">
+        <div class="commit__icon">
+          <i class="bi bi-wrench-adjustable" aria-hidden="true"></i>
+        </div>
+        <div>
+          <h3 class="commit__item-title">
+            We fix faults <strong>the same day</strong>
+          </h3>
+          <p class="commit__copy">
+            If something breaks, an engineer is on it before the day is out.
+          </p>
+        </div>
+      </div>
+
+      <div class="commit__item">
+        <div class="commit__icon">
+          <i class="bi bi-cash-coin" aria-hidden="true"></i>
+        </div>
+        <div>
+          <h3 class="commit__item-title">
+            We never <strong>raise your price</strong> mid-contract
+          </h3>
+          <p class="commit__copy">
+            The number you sign up for is the number you keep paying.
+          </p>
+        </div>
+      </div>
+
+      <div class="commit__item">
+        <div class="commit__icon">
+          <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+        </div>
+        <div>
+          <h3 class="commit__item-title">
+            We install <strong>locally</strong>, always
+          </h3>
+          <p class="commit__copy">
+            Our engineers live in the neighbourhoods they serve. No contractors
+            flown in from elsewhere.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CTA BAND -->
+<section class="ctaband">
+  <div class="ctaband__inner">
+
+    <p class="ctaband__text">
+      If that sounds like the kind of internet you'd want in your home or
+      business, we'd love to hear from you.
+    </p>
+
+    <a href="{% url 'app:index' %}#contact" class="ctaband__btn">
+      Get In Touch
+      <i class="bi bi-arrow-right" aria-hidden="true"></i>
+    </a>
+
+  </div>
+</section>
+
+{% endblock %}

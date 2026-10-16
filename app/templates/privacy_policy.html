@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Privacy Policy — gofaiba{% endblock %}
+
+{% block content %}
+
+<article class="legal">
+  <div class="legal__inner">
+
+    <!-- HEAD -->
+    <header class="legal__head">
+      <p class="legal__eyebrow">
+        <i class="bi bi-shield-check" aria-hidden="true"></i>
+        Legal
+      </p>
+
+      <h1 class="legal__title">
+        Privacy <strong>Policy</strong>
+      </h1>
+
+      <p class="legal__meta">
+        <span>
+          <i class="bi bi-calendar3" aria-hidden="true"></i>
+          Effective date: 5 October 2026
+        </span>
+      </p>
+    </header>
+
+    <!-- 1 -->
+    <section class="legal__section" id="information-we-collect">
+      <span class="legal__section-num">01 — WHAT WE COLLECT</span>
+      <h2>Information we collect</h2>
+      <p>
+        We only collect what you choose to give us — through the forms on this
+        site. Nothing more, nothing hidden. Specifically:
+      </p>
+      <ul>
+        <li>
+          <strong>Contact requests</strong> — when you submit the form on our
+          contact page, we receive your name, email address, phone number (if
+          provided), chosen topic and message.
+        </li>
+        <li>
+          <strong>Feedback submissions</strong> — when you share feedback on the
+          home page, we receive your name, email and the feedback itself.
+        </li>
+        <li>
+          <strong>Questions</strong> — when you ask a question through the FAQ
+          page, we receive your name, email, chosen subject and message.
+        </li>
+      </ul>
+      <div class="legal__note">
+        <strong>We don't track you.</strong>
+        No analytics cookies, no third-party trackers, no advertising IDs, no
+        fingerprinting.
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="legal__section" id="how-we-use-it">
+      <span class="legal__section-num">02 — HOW WE USE IT</span>
+      <h2>How we use your information</h2>
+      <p>
+        Whatever you send us is used for one purpose only: to get back to you
+        and to run this service well. In practice, that means:
+      </p>
+      <ul>
+        <li>Replying to your inquiries, questions and feedback.</li>
+        <li>Providing details about our pricing plans, add-ons and services.</li>
+        <li>Improving the reliability, speed and functionality of the site.</li>
+        <li>Keeping the platform secure and diagnosing technical issues.</li>
+      </ul>
+    </section>
+
+    <!-- 3 -->
+    <section class="legal__section" id="retention">
+      <span class="legal__section-num">03 — STORAGE &amp; SECURITY</span>
+      <h2>Data retention &amp; security</h2>
+      <p>
+        Form submissions are stored securely on servers we control. We use
+        industry-standard security practices to protect against unauthorised
+        access, alteration or loss of your information.
+      </p>
+      <p>
+        We keep submissions only as long as they're needed to respond to you
+        and maintain our records — after which they can be deleted on request.
+      </p>
+    </section>
+
+    <!-- 4 -->
+    <section class="legal__section" id="third-parties">
+      <span class="legal__section-num">04 — SHARING</span>
+      <h2>Third-party sharing</h2>
+      <p>
+        We don't sell, trade, rent or otherwise hand your personal information
+        to third parties. Period.
+      </p>
+      <p>
+        Information you send us is processed strictly for internal
+        communication and customer support — nothing else.
+      </p>
+    </section>
+
+    <!-- 5 -->
+    <section class="legal__section" id="your-rights">
+      <span class="legal__section-num">05 — YOUR RIGHTS</span>
+      <h2>Your rights</h2>
+      <p>
+        You can ask us at any time what information we hold about you, request
+        a copy, or ask us to delete it. Just get in touch through the contact
+        page and we'll take care of it.
+      </p>
+    </section>
+
+    <!-- 6 -->
+    <section class="legal__section" id="contact">
+      <span class="legal__section-num">06 — GET IN TOUCH</span>
+      <h2>Questions?</h2>
+      <p>
+        If anything here is unclear, or you'd like to exercise any of the
+        rights above, reach out through our
+        <a href="{% url 'app:contact' %}">contact page</a> — a real person will
+        respond.
+      </p>
+    </section>
+
+    <!-- CTA -->
+    <div class="legal__cta">
+      <p class="legal__cta-text">
+        Want to know how we handle cookies too?
+      </p>
+      <a href="{% url 'app:cookie_policy' %}" class="btn-primary">
+        Read Cookie Policy
+        <i class="bi bi-arrow-right" aria-hidden="true"></i>
+      </a>
+    </div>
+
+  </div>
+</article>
+
+{% endblock %}

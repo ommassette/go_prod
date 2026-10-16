@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}FAQ — gofaiba{% endblock %}
+
+{% block content %}
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="faq__inner">
+
+    <div class="faq__head">
+      <h1 class="faq__title">
+        Questions, <strong>answered</strong>
+      </h1>
+      <p class="faq__intro">
+        Everything you need to know about our plans, installs and support —
+        and if you can't find it here, ask us directly below.
+      </p>
+    </div>
+
+    <div class="faq__list" id="faqList">
+
+      {% for item in faqs %}
+        <div class="faq__item">
+          <button type="button" class="faq__question" aria-expanded="false">
+            <span>{{ item.question }}</span>
+            <span class="faq__toggle" aria-hidden="true"><i class="bi bi-plus-lg"></i></span>
+          </button>
+          <div class="faq__answer">
+            <div class="faq__answer-inner">
+              {{ item.answer|linebreaksbr }}
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <p class="faq__empty">No FAQs published yet.</p>
+      {% endfor %}
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ASK A QUESTION -->
+<section class="ask">
+  <div class="ask__inner">
+
+    <div class="ask__head">
+      <h2 class="ask__title">
+        Still curious? <strong>Ask us anything</strong>
+      </h2>
+      <p class="ask__intro">
+        Send us your question and we'll get back to you within one working day —
+        usually much sooner.
+      </p>
+    </div>
+
+    <form class="ask__form" id="questionForm"
+          method="post" action="{% url 'app:faq' %}#questionForm" novalidate>
+      {% csrf_token %}
+
+      <div class="q-row">
+        <div class="q-field{% if form.name.errors %} has-error{% endif %}">
+          <label for="{{ form.name.id_for_label }}">Name</label>
+          {{ form.name }}
+          {% for error in form.name.errors %}
+            <span class="q-error">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+        <div class="q-field{% if form.email.errors %} has-error{% endif %}">
+          <label for="{{ form.email.id_for_label }}">Email</label>
+          {{ form.email }}
+          {% for error in form.email.errors %}
+            <span class="q-error">{{ error }}</span>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="q-field{% if form.subject.errors %} has-error{% endif %}">
+        <label for="{{ form.subject.id_for_label }}">Subject</label>
+        {{ form.subject }}
+        {% for error in form.subject.errors %}
+          <span class="q-error">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <div class="q-field{% if form.message.errors %} has-error{% endif %}">
+        <label for="{{ form.message.id_for_label }}">Your question</label>
+        {{ form.message }}
+        {% for error in form.message.errors %}
+          <span class="q-error">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <button type="submit" class="ask__submit">
+        Send Question
+        <i class="bi bi-arrow-right" aria-hidden="true"></i>
+      </button>
+
+    </form>
+
+  </div>
+</section>
+
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- FAQ ACCORDION (single-open) ---------- */
+  const faqItems = document.querySelectorAll('#faqList .faq__item');
+
+  function closeFaq(item) {
+    item.classList.remove('is-open');
+    const btn = item.querySelector('.faq__question');
+    const ans = item.querySelector('.faq__answer');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+    if (ans) ans.style.maxHeight = '0px';
+  }
+
+  function openFaq(item) {
+    item.classList.add('is-open');
+    const btn = item.querySelector('.faq__question');
+    const ans = item.querySelector('.faq__answer');
+    if (btn) btn.setAttribute('aria-expanded', 'true');
+    if (ans) ans.style.maxHeight = ans.scrollHeight + 'px';
+  }
+
+  faqItems.forEach(function (item) {
+    const btn = item.querySelector('.faq__question');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      const isOpen = item.classList.contains('is-open');
+      faqItems.forEach(function (other) {
+        if (other !== item) closeFaq(other);
+      });
+      isOpen ? closeFaq(item) : openFaq(item);
+    });
+  });
+
+  let faqRT;
+  window.addEventListener('resize', function () {
+    clearTimeout(faqRT);
+    faqRT = setTimeout(function () {
+      document.querySelectorAll('#faqList .faq__item.is-open').forEach(function (item) {
+        const ans = item.querySelector('.faq__answer');
+        if (ans) ans.style.maxHeight = ans.scrollHeight + 'px';
+      });
+    }, 120);
+  });
+})();
+</script>
+{% endblock %}

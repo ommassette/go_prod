@@ -1,0 +1,436 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero__inner">
+
+    <div class="hero__text">
+      <h1 class="hero__title">Internet that</h1>
+
+      <div class="hero__type-line" aria-live="polite">
+        <span class="hero__type" id="typed"></span>
+        <span class="hero__caret" aria-hidden="true"></span>
+      </div>
+
+      <p class="hero__copy">
+        Symmetrical speeds, truly unlimited data, and a network built for
+        the way you actually live. No caps, no throttling, no surprises.
+      </p>
+
+      <div class="hero__actions">
+        <a href="#pricing" class="btn-primary">
+          View Plans <i class="bi bi-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a href="#contact" class="btn-ghost">Check Coverage</a>
+      </div>
+    </div>
+
+    <div class="hero__media">
+      <div class="hero__media-frame">
+        {% if site_settings.hero_image %}
+          <img src="{{ site_settings.hero_image.url }}"
+               alt="{{ site_settings.hero_image_alt }}"
+               fetchpriority="high">
+        {% endif %}
+      </div>
+
+      <div class="hero__stat">
+        <span class="hero__stat-icon">
+          <i class="bi bi-lightning-charge-fill" aria-hidden="true"></i>
+        </span>
+        <span class="hero__stat-text">
+          <span class="hero__stat-value">1 Gbps</span>
+          <span class="hero__stat-label">Symmetrical</span>
+        </span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WAY OF SERVICE (static) -->
+<section class="way" id="services">
+  <div class="way__inner">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <symbol id="cloudShape" viewBox="0 0 140 70">
+        <g fill="currentColor">
+          <circle cx="36"  cy="42" r="21"/>
+          <circle cx="68"  cy="30" r="28"/>
+          <circle cx="104" cy="43" r="19"/>
+          <rect x="36" y="38" width="68" height="25" rx="12.5"/>
+        </g>
+      </symbol>
+    </svg>
+
+    <div class="way__steps">
+      <svg class="way__line" viewBox="0 0 1200 8" preserveAspectRatio="none"
+           xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <line x1="200" y1="4" x2="600" y2="4"
+              stroke="#ed6e2a" stroke-width="6" stroke-linecap="round"
+              stroke-dasharray="0 18" vector-effect="non-scaling-stroke" opacity=".55"/>
+        <line x1="600" y1="4" x2="1000" y2="4"
+              stroke="#ed6e2a" stroke-width="6" stroke-linecap="round"
+              stroke-dasharray="0 18" vector-effect="non-scaling-stroke" opacity=".55"/>
+      </svg>
+
+      <div class="way__clouds" aria-hidden="true">
+        <svg class="way__cloud" viewBox="0 0 140 70"
+             style="left:22%; top:14px; width:120px; opacity:.08;">
+          <use href="#cloudShape"/>
+        </svg>
+        <svg class="way__cloud" viewBox="0 0 140 70"
+             style="left:32%; top:68px; width:150px; opacity:.06;">
+          <use href="#cloudShape"/>
+        </svg>
+        <svg class="way__cloud" viewBox="0 0 140 70"
+             style="left:58%; top:64px; width:132px; opacity:.07;">
+          <use href="#cloudShape"/>
+        </svg>
+        <svg class="way__cloud" viewBox="0 0 140 70"
+             style="left:71%; top:12px; width:106px; color:#ed6e2a; opacity:.10;">
+          <use href="#cloudShape"/>
+        </svg>
+      </div>
+
+      <div class="way__step">
+        <div class="way__circle">
+          <i class="bi bi-lightning-charge-fill" aria-hidden="true"></i>
+        </div>
+        <h3 class="way__title">Blazing Speed</h3>
+        <p class="way__copy">
+          Symmetrical speeds you can actually feel. Streaming, gaming, working —
+          everything loads the moment you click.
+        </p>
+      </div>
+
+      <div class="way__vline" aria-hidden="true">
+        <svg class="way__vline-cloud" viewBox="0 0 140 70"><use href="#cloudShape"/></svg>
+      </div>
+
+      <div class="way__step">
+        <div class="way__circle">
+          <i class="bi bi-router-fill" aria-hidden="true"></i>
+        </div>
+        <h3 class="way__title">Easy Setup</h3>
+        <p class="way__copy">
+          We handle the install from start to finish. Most homes are connected
+          and running the same day you sign up.
+        </p>
+      </div>
+
+      <div class="way__vline" aria-hidden="true">
+        <svg class="way__vline-cloud" viewBox="0 0 140 70"><use href="#cloudShape"/></svg>
+      </div>
+
+      <div class="way__step">
+        <div class="way__circle">
+          <i class="bi bi-headset" aria-hidden="true"></i>
+        </div>
+        <h3 class="way__title">Always-On Support</h3>
+        <p class="way__copy">
+          Real people on the line, every hour of every day. If something goes
+          wrong, we fix it — fast.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WELCOME (static) -->
+<section class="welcome" id="about">
+  <div class="welcome__inner">
+    <p class="welcome__copy">
+      From the first call to the day your router lights up, we keep it simple.
+      No jargon, no hidden fees — just fast, reliable internet backed by people
+      who actually pick up the phone.
+    </p>
+    <div class="welcome__cta">
+      <a href="#about-page" class="welcome__btn">
+        About Us <i class="bi bi-arrow-right" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS (dynamic) -->
+<section class="plans" id="pricing">
+  <div class="plans__inner">
+    <div class="plans__grid">
+      {% for plan in plans %}
+        <div class="plan{% if plan.is_featured %} plan--featured{% endif %}">
+          {% if plan.is_featured %}<span class="plan__accent" aria-hidden="true"></span>{% endif %}
+
+          <h3 class="plan__name{% if plan.is_featured %} plan__name--accent{% endif %}">
+            {{ plan.name }}
+          </h3>
+
+          <div class="plan__speed">
+            <span class="plan__speed-value">{{ plan.speed_value }}</span>
+            <span class="plan__speed-unit">{{ plan.speed_unit }}</span>
+          </div>
+
+          <div class="plan__price">
+            <span class="plan__price-value">{{ plan.price_value }}</span>
+            <span class="plan__price-unit">{{ plan.price_unit }}</span>
+          </div>
+
+          <div class="plan__rule"></div>
+
+          <ul class="plan__features">
+            {% for feature in plan.feature_list %}
+              <li><i class="bi bi-check2" aria-hidden="true"></i>{{ feature }}</li>
+            {% endfor %}
+          </ul>
+
+          <a href="{{ plan.cta_url }}"
+             class="plan__cta {% if plan.is_featured %}plan__cta--solid{% else %}plan__cta--ghost{% endif %}">
+            {{ plan.cta_text }} <i class="bi bi-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      {% empty %}
+        <p>No plans available yet.</p>
+      {% endfor %}
+    </div>
+
+    <div class="plans__footer">
+      <a href="#pricing" class="plans__all">
+        View All Plans <i class="bi bi-arrow-right" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS (static) -->
+<section class="stats">
+  <div class="stats__inner">
+    <div class="stats__grid">
+      <div class="stat">
+        <div class="stat__cloud-wrap">
+          <svg class="stat__cloud" viewBox="1.5 5 21 15" fill="none"
+               xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.502 4.502 0 0 0 2.25 15Z"
+                  fill="rgba(237,110,42,0.06)" stroke="rgba(237,110,42,0.55)"
+                  stroke-width="0.22" stroke-linecap="round" stroke-dasharray="0.01 1.3"/>
+          </svg>
+          <i class="stat__icon bi bi-emoji-smile" aria-hidden="true"></i>
+        </div>
+        <span class="stat__number">200</span>
+        <span class="stat__label">Happy Customers</span>
+      </div>
+
+      <div class="stat">
+        <div class="stat__cloud-wrap">
+          <svg class="stat__cloud" viewBox="1.5 5 21 15" fill="none"
+               xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.502 4.502 0 0 0 2.25 15Z"
+                  fill="rgba(237,110,42,0.06)" stroke="rgba(237,110,42,0.55)"
+                  stroke-width="0.22" stroke-linecap="round" stroke-dasharray="0.01 1.3"/>
+          </svg>
+          <i class="stat__icon bi bi-lightning-charge-fill" aria-hidden="true"></i>
+        </div>
+        <span class="stat__number">24</span>
+        <span class="stat__label">Good Speed</span>
+      </div>
+
+      <div class="stat">
+        <div class="stat__cloud-wrap">
+          <svg class="stat__cloud" viewBox="1.5 5 21 15" fill="none"
+               xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.502 4.502 0 0 0 2.25 15Z"
+                  fill="rgba(237,110,42,0.06)" stroke="rgba(237,110,42,0.55)"
+                  stroke-width="0.22" stroke-linecap="round" stroke-dasharray="0.01 1.3"/>
+          </svg>
+          <i class="stat__icon bi bi-rocket-takeoff-fill" aria-hidden="true"></i>
+        </div>
+        <span class="stat__number">500</span>
+        <span class="stat__label">Better Loading</span>
+      </div>
+
+      <div class="stat">
+        <div class="stat__cloud-wrap">
+          <svg class="stat__cloud" viewBox="1.5 5 21 15" fill="none"
+               xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.502 4.502 0 0 0 2.25 15Z"
+                  fill="rgba(237,110,42,0.06)" stroke="rgba(237,110,42,0.55)"
+                  stroke-width="0.22" stroke-linecap="round" stroke-dasharray="0.01 1.3"/>
+          </svg>
+          <i class="stat__icon bi bi-wifi" aria-hidden="true"></i>
+        </div>
+        <span class="stat__number">120</span>
+        <span class="stat__label">Fast Network</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS + FEEDBACK -->
+<section class="reviews" id="testimonials">
+  <div class="reviews__inner">
+    <div class="reviews__grid">
+
+      <div class="reviews__left">
+        <div class="reviews__track" id="reviewsTrack">
+          {% for t in testimonials %}
+            <div class="reviews__slide{% if forloop.first %} is-active{% endif %}">
+              <p class="reviews__quote">{{ t.quote }}</p>
+              <p class="reviews__author">— {{ t.author }}</p>
+            </div>
+          {% empty %}
+            <div class="reviews__slide is-active">
+              <p class="reviews__quote">No testimonials yet.</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="reviews__right">
+        <h2 class="reviews__form-title">Share your experience</h2>
+        <p class="reviews__form-intro">
+          Studied with us? We'd love to hear how it went — your feedback helps
+          us keep improving for the next generation.
+        </p>
+
+        <form class="reviews__form" method="post" action="{% url 'app:index' %}#testimonials" novalidate>
+          {% csrf_token %}
+
+          <div class="rv-field{% if form.name.errors %} has-error{% endif %}">
+            <label for="{{ form.name.id_for_label }}">Name</label>
+            {{ form.name }}
+            {% for error in form.name.errors %}
+              <span class="rv-error">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <div class="rv-field{% if form.email.errors %} has-error{% endif %}">
+            <label for="{{ form.email.id_for_label }}">Email</label>
+            {{ form.email }}
+            {% for error in form.email.errors %}
+              <span class="rv-error">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <div class="rv-field{% if form.message.errors %} has-error{% endif %}">
+            <label for="{{ form.message.id_for_label }}">Your feedback</label>
+            {{ form.message }}
+            {% for error in form.message.errors %}
+              <span class="rv-error">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <button type="submit" class="reviews__submit">
+            Submit Feedback <i class="bi bi-arrow-right" aria-hidden="true"></i>
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MAP (static) -->
+<section class="map" aria-label="Our location on the map">
+  <iframe
+    title="gofaiba office location"
+    src="https://www.google.com/maps?q=Nairobi,Kenya&output=embed"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allowfullscreen>
+  </iframe>
+</section>
+
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- TYPEWRITER ---------- */
+  const target = document.getElementById('typed');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const phrases = [
+    'never slows down.',
+    'just works.',
+    'feels effortless.',
+    'keeps up with you.'
+  ];
+
+  if (target) {
+    if (prefersReduced) {
+      target.textContent = phrases[0];
+    } else {
+      let pIndex = 0;
+      let cIndex = 0;
+      let deleting = false;
+      let pause = 0;
+
+      const TYPE_SPEED = 65;
+      const ERASE_SPEED = 32;
+      const HOLD_TIME = 1600;
+      const GAP_TIME = 320;
+
+      function tick() {
+        const phrase = phrases[pIndex];
+
+        if (pause > 0) {
+          pause -= 40;
+          setTimeout(tick, 40);
+          return;
+        }
+
+        if (!deleting) {
+          cIndex++;
+          target.textContent = phrase.slice(0, cIndex);
+
+          if (cIndex === phrase.length) {
+            deleting = true;
+            pause = HOLD_TIME;
+            setTimeout(tick, 40);
+            return;
+          }
+          setTimeout(tick, TYPE_SPEED);
+        } else {
+          cIndex--;
+          target.textContent = phrase.slice(0, cIndex);
+
+          if (cIndex === 0) {
+            deleting = false;
+            pIndex = (pIndex + 1) % phrases.length;
+            pause = GAP_TIME;
+            setTimeout(tick, 40);
+            return;
+          }
+          setTimeout(tick, ERASE_SPEED);
+        }
+      }
+
+      setTimeout(tick, 500);
+    }
+  }
+
+  /* ---------- TESTIMONIAL CAROUSEL ---------- */
+  const track = document.getElementById('reviewsTrack');
+  if (track) {
+    const slides = track.querySelectorAll('.reviews__slide');
+    if (slides.length > 1) {
+      let index = 0;
+
+      function show(i) {
+        index = (i + slides.length) % slides.length;
+        slides.forEach(function (s, idx) {
+          s.classList.toggle('is-active', idx === index);
+        });
+      }
+
+      show(0);
+      setInterval(function () { show(index + 1); }, 7000);
+    }
+  }
+})();
+</script>
+{% endblock %}

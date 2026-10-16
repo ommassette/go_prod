@@ -1,0 +1,331 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Pricing — gofaiba{% endblock %}
+
+{% block content %}
+
+<section class="plans-page">
+  <div class="plans-page__inner">
+
+    <!-- trust strip -->
+    <div class="trust">
+      <div class="trust__inner">
+        <span class="trust__item"><i class="bi bi-check2"></i>No setup fees</span>
+        <span class="trust__item"><i class="bi bi-check2"></i>Cancel anytime</span>
+        <span class="trust__item"><i class="bi bi-check2"></i>No mid-contract price rises</span>
+        <span class="trust__item"><i class="bi bi-check2"></i>All prices exclude VAT</span>
+      </div>
+    </div>
+
+    <!-- ==================================================
+         HOME FIBRE
+    =================================================== -->
+    <div class="plan-group" data-plan-carousel>
+
+      <div class="plan-group__head">
+        <div class="plan-group__intro">
+          <h2 class="plan-group__title">
+            <strong>Home</strong> Fibre
+          </h2>
+          <p class="plan-group__desc">
+            Symmetrical, uncapped fibre straight to your door — for streaming,
+            gaming, working and everything in between.
+          </p>
+        </div>
+
+        <div class="plan-group__nav">
+          <button type="button" class="plan-nav-btn plan-nav-prev" aria-label="Previous plan">
+            <i class="bi bi-arrow-left" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="plan-nav-btn plan-nav-next" aria-label="Next plan">
+            <i class="bi bi-arrow-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="plan-carousel">
+        <div class="plan-track">
+
+          {% for plan in home_plans %}
+            <div class="plan-card{% if plan.is_featured %} plan-card--featured{% endif %}">
+              <div class="plan-card__inner">
+                {% if plan.is_featured %}<span class="plan-card__accent" aria-hidden="true"></span>{% endif %}
+
+                <h3 class="plan-card__name">{{ plan.name }}</h3>
+
+                <div class="plan-card__speed">
+                  <span class="plan-card__speed-value">{{ plan.speed_value }}</span>
+                  <span class="plan-card__speed-unit">{{ plan.speed_unit }}</span>
+                </div>
+
+                <div class="plan-card__price">
+                  <span class="plan-card__price-value">{{ plan.price_value }}</span>
+                  <span class="plan-card__price-unit">{{ plan.price_unit }}</span>
+                </div>
+
+                <div class="plan-card__rule"></div>
+
+                <ul class="plan-card__features">
+                  {% for feature in plan.feature_list %}
+                    <li><i class="bi bi-check2"></i>{{ feature }}</li>
+                  {% endfor %}
+                </ul>
+
+                <a href="{% url 'app:contact' %}"
+                   class="plan-card__cta {% if plan.is_featured %}plan-card__cta--solid{% else %}plan-card__cta--ghost{% endif %}">
+                  Choose Plan <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          {% empty %}
+            <p class="plans-page__empty">No home plans available yet.</p>
+          {% endfor %}
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================================================
+         BUSINESS INTERNET
+    =================================================== -->
+    <div class="plan-group" data-plan-carousel>
+
+      <div class="plan-group__head">
+        <div class="plan-group__intro">
+          <h2 class="plan-group__title">
+            <strong>Business</strong> Internet
+          </h2>
+          <p class="plan-group__desc">
+            Dedicated bandwidth, static IPs and SLA-backed uptime — for teams
+            that can't afford to be offline.
+          </p>
+        </div>
+
+        <div class="plan-group__nav">
+          <button type="button" class="plan-nav-btn plan-nav-prev" aria-label="Previous plan">
+            <i class="bi bi-arrow-left" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="plan-nav-btn plan-nav-next" aria-label="Next plan">
+            <i class="bi bi-arrow-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="plan-carousel">
+        <div class="plan-track">
+
+          {% for plan in business_plans %}
+            <div class="plan-card{% if plan.is_featured %} plan-card--featured{% endif %}">
+              <div class="plan-card__inner">
+                {% if plan.is_featured %}<span class="plan-card__accent" aria-hidden="true"></span>{% endif %}
+
+                <h3 class="plan-card__name">{{ plan.name }}</h3>
+
+                <div class="plan-card__speed">
+                  <span class="plan-card__speed-value">{{ plan.speed_value }}</span>
+                  <span class="plan-card__speed-unit">{{ plan.speed_unit }}</span>
+                </div>
+
+                <div class="plan-card__price">
+                  <span class="plan-card__price-value">{{ plan.price_value }}</span>
+                  <span class="plan-card__price-unit">{{ plan.price_unit }}</span>
+                </div>
+
+                <div class="plan-card__rule"></div>
+
+                <ul class="plan-card__features">
+                  {% for feature in plan.feature_list %}
+                    <li><i class="bi bi-check2"></i>{{ feature }}</li>
+                  {% endfor %}
+                </ul>
+
+                <a href="{% url 'app:contact' %}"
+                   class="plan-card__cta {% if plan.is_featured %}plan-card__cta--solid{% else %}plan-card__cta--ghost{% endif %}">
+                  Choose Plan <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          {% empty %}
+            <p class="plans-page__empty">No business plans available yet.</p>
+          {% endfor %}
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- WHAT'S INCLUDED (free router removed) -->
+<section class="incl-plans">
+  <div class="incl-plans__inner">
+
+    <div class="incl-plans__head">
+      <h2 class="incl-plans__title">
+        Every plan comes with <strong>the basics</strong>
+      </h2>
+    </div>
+
+    <div class="incl-plans__grid">
+
+      <div class="incl-plans__item">
+        <div class="incl-plans__icon">
+          <i class="bi bi-tools" aria-hidden="true"></i>
+        </div>
+        <h3 class="incl-plans__item-title">Free install</h3>
+        <p class="incl-plans__item-copy">Cabled, mounted, and tested.</p>
+      </div>
+
+      <div class="incl-plans__item">
+        <div class="incl-plans__icon">
+          <i class="bi bi-headset" aria-hidden="true"></i>
+        </div>
+        <h3 class="incl-plans__item-title">24/7 support</h3>
+        <p class="incl-plans__item-copy">Real humans, every hour.</p>
+      </div>
+
+      <div class="incl-plans__item">
+        <div class="incl-plans__icon">
+          <i class="bi bi-arrow-repeat" aria-hidden="true"></i>
+        </div>
+        <h3 class="incl-plans__item-title">Free upgrades</h3>
+        <p class="incl-plans__item-copy">Speed bumps as we expand.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ADD-ONS (dynamic — reuses AddOn model) -->
+<section class="addons-plans">
+  <div class="addons-plans__inner">
+
+    <div class="addons-plans__head">
+      <h2 class="addons-plans__title">
+        Extras when you need <strong>more</strong>
+      </h2>
+      <p class="addons-plans__copy">
+        Optional services you can add to any plan — book them with your install
+        or ring us any time after.
+      </p>
+    </div>
+
+    <div class="addons-plans__grid">
+
+      {% for addon in addons %}
+        <div class="addons-plans__item">
+          <div class="addons-plans__left">
+            <div class="addons-plans__icon">
+              <i class="bi {{ addon.icon }}" aria-hidden="true"></i>
+            </div>
+            <div>
+              <h3 class="addons-plans__name">{{ addon.name }}</h3>
+              <p class="addons-plans__desc">{{ addon.description }}</p>
+            </div>
+          </div>
+          <div class="addons-plans__price">
+            <span class="addons-plans__price-value">{{ addon.price_value }}</span>
+            <span class="addons-plans__price-unit">{{ addon.price_unit }}</span>
+          </div>
+        </div>
+      {% empty %}
+        <p class="addons-plans__empty">No extras available right now.</p>
+      {% endfor %}
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CTA BAND -->
+<section class="ctaband">
+  <div class="ctaband__inner">
+
+    <p class="ctaband__text">
+      Not sure which plan fits? Tell us what you use the internet for and we'll
+      point you at the right one — no pressure, no upselling.
+    </p>
+
+    <a href="{% url 'app:contact' %}" class="ctaband__btn">
+      Talk To Us
+      <i class="bi bi-arrow-right" aria-hidden="true"></i>
+    </a>
+
+  </div>
+</section>
+
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- PLAN CAROUSELS ---------- */
+  function setupPlanGroup(group) {
+    const track = group.querySelector('.plan-track');
+    const prev  = group.querySelector('.plan-nav-prev');
+    const next  = group.querySelector('.plan-nav-next');
+    const nav   = group.querySelector('.plan-group__nav');
+
+    if (!track || !prev || !next) return;
+
+    const cards = track.querySelectorAll('.plan-card');
+    const count = cards.length;
+
+    /* If 3 or fewer plans → static grid (CSS handles it) */
+    if (count <= 3) {
+      group.classList.remove('is-carousel');
+      return;
+    }
+
+    group.classList.add('is-carousel');
+
+    function step() {
+      const card = track.querySelector('.plan-card');
+      if (!card) return track.clientWidth;
+      return card.getBoundingClientRect().width;
+    }
+
+    function refresh() {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      const overflows = maxScroll > 4;
+
+      if (nav) nav.style.display = overflows ? '' : 'none';
+
+      prev.disabled = !overflows || track.scrollLeft <= 4;
+      next.disabled = !overflows || track.scrollLeft >= maxScroll - 4;
+    }
+
+    prev.addEventListener('click', function () {
+      track.scrollBy({ left: -step(), behavior: 'smooth' });
+    });
+    next.addEventListener('click', function () {
+      track.scrollBy({ left: step(), behavior: 'smooth' });
+    });
+
+    let raf = null;
+    track.addEventListener('scroll', function () {
+      if (raf) return;
+      raf = requestAnimationFrame(function () {
+        refresh();
+        raf = null;
+      });
+    }, { passive: true });
+
+    window.addEventListener('resize', refresh);
+
+    requestAnimationFrame(refresh);
+    setTimeout(refresh, 250);
+  }
+
+  document.querySelectorAll('[data-plan-carousel]').forEach(setupPlanGroup);
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Cookie Policy — gofaiba{% endblock %}
+
+{% block content %}
+
+<article class="legal">
+  <div class="legal__inner">
+
+    <!-- HEAD -->
+    <header class="legal__head">
+      <p class="legal__eyebrow">
+        <i class="bi bi-shield-lock-fill" aria-hidden="true"></i>
+        Legal
+      </p>
+
+      <h1 class="legal__title">
+        Cookie <strong>Policy</strong>
+      </h1>
+
+      <p class="legal__meta">
+        <span>
+          <i class="bi bi-calendar3" aria-hidden="true"></i>
+          Effective date: 5 October 2026
+        </span>
+      </p>
+    </header>
+
+    <!-- 1 -->
+    <section class="legal__section" id="what-are-cookies">
+      <span class="legal__section-num">01 — OVERVIEW</span>
+      <h2>What are cookies</h2>
+      <p>
+        Cookies are small text files stored on your device when you visit a
+        website. They help us keep forms secure, maintain your session across
+        pages, and serve content smoothly.
+      </p>
+    </section>
+
+    <!-- 2 -->
+    <section class="legal__section" id="cookies-we-use">
+      <span class="legal__section-num">02 — WHAT WE USE</span>
+      <h2>Cookies we use</h2>
+      <p>
+        We keep things minimal. The only cookies we set are strictly necessary
+        for the site to function safely and correctly:
+      </p>
+      <ul>
+        <li>
+          <strong>CSRF token cookie</strong> (<code>csrftoken</code>) —
+          required for Cross-Site Request Forgery protection on every form
+          submission across the site, including our feedback, question and
+          contact forms.
+        </li>
+        <li>
+          <strong>Session cookie</strong> — used to carry flash messages such
+          as submission confirmations across page redirects.
+        </li>
+      </ul>
+      <div class="legal__note">
+        <strong>We don't use advertising or analytics cookies.</strong>
+        No third-party trackers, no behavioural profiling, no cross-site
+        advertising IDs.
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="legal__section" id="performance">
+      <span class="legal__section-num">03 — PERFORMANCE</span>
+      <h2>Performance &amp; caching</h2>
+      <p>
+        To keep pages like our pricing plans and add-ons fast, we use
+        server-side caching. This happens entirely on our own servers and does
+        not track individual browsing behaviour across external sites.
+      </p>
+    </section>
+
+    <!-- 4 -->
+    <section class="legal__section" id="managing">
+      <span class="legal__section-num">04 — YOUR CHOICE</span>
+      <h2>Managing cookies</h2>
+      <p>
+        You can disable or delete cookies at any time through your browser
+        settings. Just note that turning off essential cookies — particularly
+        the CSRF token — will prevent contact forms and other submissions from
+        working correctly.
+      </p>
+    </section>
+
+    <!-- 5 -->
+    <section class="legal__section" id="contact">
+      <span class="legal__section-num">05 — GET IN TOUCH</span>
+      <h2>Questions?</h2>
+      <p>
+        If you'd like more detail on how we handle cookies, or anything else
+        about your data, reach out through our
+        <a href="{% url 'app:contact' %}">contact page</a> — a real person will
+        answer.
+      </p>
+    </section>
+
+    <!-- CTA -->
+    <div class="legal__cta">
+      <p class="legal__cta-text">
+        See something else you'd like clarified?
+      </p>
+      <a href="{% url 'app:contact' %}" class="btn-primary">
+        Contact Us
+        <i class="bi bi-arrow-right" aria-hidden="true"></i>
+      </a>
+    </div>
+
+  </div>
+</article>
+
+{% endblock %}
