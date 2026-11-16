@@ -4049,3 +4049,31 @@ a.contact__info-value:hover{ color: var(--orange); }
   .legal__cta { flex-direction: column; align-items: stretch; text-align: center; }
   .legal__cta .btn-primary { justify-content: center; }
 }
+/* ============================================================
+   LOGO IMAGE — header + footer
+============================================================ */
+.hd__brand-img{
+  display: block;
+  height: 38px;
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.ft__brand-img{
+  display: block;
+  height: 34px;
+  width: auto;
+  max-width: 170px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+@media (min-width: 1024px){
+  .hd__brand-img{ height: 42px; }
+}
+
+@media (max-width: 640px){
+  .hd__brand-img{ height: 32px; max-width: 150px; }
+}
